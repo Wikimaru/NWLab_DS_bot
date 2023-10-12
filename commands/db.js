@@ -48,38 +48,47 @@ module.exports =
     async execute(interaction)
     {
         //await interaction.reply('work');
-        if (interaction.options.getSubcommand() === "create")
-        {
-            let p_id = interaction.options.getString("barcode_id")
-            let p_name = interaction.options.getString("product_name")
-            let p_price = interaction.options.getInteger("product_price")
-            var editer_username = interaction.user.username
-            console.log(editer_username)
-            InsertData(p_id,p_name,p_price,editer_username,interaction)
-        }
-        else if(interaction.options.getSubcommand() === "editname") 
-        {
-            let p_id = interaction.options.getString("barcode_id")
-            let p_name = interaction.options.getString("product_name")
-            var editer_username = interaction.user.username
-            EditName(p_id,p_name,editer_username,interaction)
-        }
-        else if(interaction.options.getSubcommand() === "editprice") 
-        {
-            let p_id = interaction.options.getString("barcode_id")
-            let p_price = interaction.options.getInteger("product_price")
-            var editer_username = interaction.user.username
-            EditPrice(p_id,p_price,editer_username,interaction)
-        }
-        else if(interaction.options.getSubcommand() === "delete") 
-        {
-            let p_id = interaction.options.getString("barcode_id")
-            var editer_username = interaction.user.username
-            DeleteData(p_id,editer_username,interaction)
+        const hasRole = interaction.member.roles.cache.some(r => r.name === process.env.EDITER_ROLE)
+        console.log(hasRole)
+        if (hasRole == false)
+        {   
+            interaction.reply("u don't have permission :3")
         }
         else
         {
-            await interaction.reply('not_work');
+            if (interaction.options.getSubcommand() === "create")
+            {
+                let p_id = interaction.options.getString("barcode_id")
+                let p_name = interaction.options.getString("product_name")
+                let p_price = interaction.options.getInteger("product_price")
+                var editer_username = interaction.user.username
+                console.log(editer_username)
+                InsertData(p_id,p_name,p_price,editer_username,interaction)
+            }
+            else if(interaction.options.getSubcommand() === "editname") 
+            {
+                let p_id = interaction.options.getString("barcode_id")
+                let p_name = interaction.options.getString("product_name")
+                var editer_username = interaction.user.username
+                EditName(p_id,p_name,editer_username,interaction)
+            }
+            else if(interaction.options.getSubcommand() === "editprice") 
+            {
+                let p_id = interaction.options.getString("barcode_id")
+                let p_price = interaction.options.getInteger("product_price")
+                var editer_username = interaction.user.username
+                EditPrice(p_id,p_price,editer_username,interaction)
+            }
+            else if(interaction.options.getSubcommand() === "delete") 
+            {
+                let p_id = interaction.options.getString("barcode_id")
+                var editer_username = interaction.user.username
+                DeleteData(p_id,editer_username,interaction)
+            }
+            else
+            {
+                await interaction.reply('not_work');
+            }
         }
     }
 }
