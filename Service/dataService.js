@@ -133,7 +133,7 @@ async function GetProductFromID(id,res)
         {
             console.log(result);
             console.log(result[0]['price']);
-            var str = `${result[0]['price'].toString()}B:${result[0]['product_name'].toString()}`
+            var str = `${result[0]['price'].toString()}\n${result[0]['product_name'].toString()}`
             res.write(str);
             //res.write(":");
             //res.write(result[0]['product_name'].toString());

@@ -14,7 +14,7 @@ module.exports =
                     option.setName("barcode_id").setDescription("barcode id").setRequired(true).setMaxLength(64).setMinLength(1)
                 )
                 .addStringOption(option =>
-                    option.setName("product_name").setDescription("product name").setRequired(true).setMaxLength(64).setMinLength(1)
+                    option.setName("product_name").setDescription("product name").setRequired(true).setMaxLength(16).setMinLength(1)
                 )
                 .addIntegerOption(option =>
                     option.setName("product_price").setDescription("product price").setRequired(true).setMinValue(1).setMaxValue(1000)
@@ -26,7 +26,7 @@ module.exports =
                 option.setName("barcode_id").setDescription("barcode id").setRequired(true).setMaxLength(64).setMinLength(1)
             )
             .addStringOption(option =>
-                option.setName("product_name").setDescription("product name").setRequired(true).setMaxLength(64).setMinLength(1)
+                option.setName("product_name").setDescription("product name").setRequired(true).setMaxLength(16).setMinLength(1)
             )
         )
         .addSubcommand(subcommand => 
